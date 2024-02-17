@@ -3,11 +3,21 @@ import { Outlet, Navigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const PrivateRoute = () => {
-    const { isLoading,  isAuthenticated, loginWithRedirect } = useAuth0();
+    const { isLoading,  isAuthenticated, loginWithRedirect, error, user } = useAuth0();
     // console.log(isAuthenticated);
 
     if (isLoading){
         return <h1>Loading Authentication</h1>
+    }
+
+    if (error){
+        return (
+            <>
+                <h1>{error.stack}</h1>
+                {/* <p>User: {user.email}</p>
+                <p>User sub: {user.sub}</p> */}
+            </>
+        );
     }
 
 
