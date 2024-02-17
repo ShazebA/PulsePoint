@@ -29,25 +29,24 @@ const userSchema = mongoose.Schema({
         type: String,
         required: false
     },
-    passwordHASH: {
-        type: String,
-        required: true
-    },
     dateOfBirth: {
         type: Date,
-        trim: true
+        trim: true,
+        required: false
     },
     familyClinicID: {
         type: Number,
         required: false
+    },
+    dependants: {
+        type: Array,
+        required: false
     }
 });
 
+const User = mongoose.model('User', userSchema, 'Users');
 
-// isActive
-// isVerified
-// clinicName - required
-// clinicAddress - required
-// clinicPhoneNumber - required
-// clinicEmail - not required
-// clinicWebsite - not required
+module.exports = User;
+
+
+
