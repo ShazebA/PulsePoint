@@ -23,4 +23,19 @@ nav ul {
 nav div {
     position: absolute;
     right: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.signinButton {
+    border: none;
+    border-radius: 15px;
+    padding: 0.8rem 1.3rem;
+    background: linear-gradient(180deg, #E9F0FD 0%, #F3EBF6 99.5%);
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
 }
