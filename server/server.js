@@ -1,17 +1,19 @@
+require('dotenv').config()
+
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
+const path = require('path');
 
 const app = express();
 app.use(cors())
 app.use(express.static(path.join(__dirname, '..', 'client','build')));
 app.use(express.json())
 
-let port = 3002;
+let port = process.env.PORT || 3001;
 
 
-
-mongoURI = "mongodb+srv://sashiqu:pDQlIbc6YWWXSgnI@deerhacks2024.ldpmy7a.mongodb.net/?retryWrites=true&w=majority"
-
+const mongoURI = process.env.MONGO_URI;
 mongoose.connect(mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
