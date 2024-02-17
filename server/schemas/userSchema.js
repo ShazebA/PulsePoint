@@ -42,3 +42,12 @@ const userSchema = mongoose.Schema({
         required: false
     }
 });
+
+
+// isActive
+// isVerified
+// clinicName - required
+// clinicAddress - required
+// clinicPhoneNumber - required
+// clinicEmail - not required
+// clinicWebsite - not required
