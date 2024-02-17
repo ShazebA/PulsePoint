@@ -3,9 +3,31 @@ const multer = require('multer');
 const CryptoJS = require('crypto-js');
 const fs = require('fs');
 const path = require('path');
-const { uploadDocumentToSmartContract, uploadDataToSmartContract } = require('../hedera/smartContractInteractions');
+const { uploadDocumentToSmartContract, uploadDataToSmartContract } = require('../hedera/smartContractInteractions');  
+const axios = require('axios');
 const Document = require('./models/Document'); // Assume you have a Mongoose model for documents
 const Data = require('./models/Data'); // Assume a model for numerical data
+const FormData = require('form-data');
+const { createReadStream, createWriteStream } = require('fs');
+
+const client = new Web3Storage({ token: process.env.WEB3_STORAGE_API });
+
+
+function encryptStream(inputPath, outputPath, callback) {
+  const cipher = crypto.createCipher(algorithm, password);
+  const input = createReadStream(inputPath);
+  const output = createWriteStream(outputPath);
+
+  input.pipe(cipher).pipe(output);
+
+  output.on('finish', () => {
+      console.log('File encrypted successfully.');
+      callback(outputPath);
+  });
+}
+
+const algorithm = 'aes-256-ctr';
+const password = 'your-encryption-password'; // Use a strong password or key derivation
 
 const app = express();
 const upload = multer({ dest: 'uploads/' });
@@ -13,39 +35,58 @@ const upload = multer({ dest: 'uploads/' });
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Route for uploading documents
 app.post('/api/uploadDocument', upload.single('document'), async (req, res) => {
-  // Encrypt and store the document
-  const filePath = req.file.path;
-  const originalData = fs.readFileSync(filePath);
-  const encryptedData = CryptoJS.AES.encrypt(originalData.toString(), 'your-encryption-key').toString();
-  const documentHash = CryptoJS.SHA256(originalData).toString();
+  if (!req.file) {
+      return res.status(400).send('No file uploaded.');
+  }
 
-  // Save encrypted data to a file or database
-  const encryptedFilePath = path.join('encrypted', req.file.filename); // Adjust path as needed
-  fs.writeFileSync(encryptedFilePath, encryptedData);
+  // Define path for the encrypted file
+  const encryptedFilePath = path.join('uploads', `encrypted-${req.file.filename}`);
 
-  // Upload hash to smart contract and save reference in MongoDB
-  const contractResponse = await uploadDocumentToSmartContract(documentHash);
-  await Document.create({ filePath: encryptedFilePath, hash: documentHash, contractAddress: contractResponse.address });
-
-  res.json({ success: true, message: 'Document uploaded and hashed successfully', documentHash });
+  // Encrypt the file before uploading
+  encryptStream(req.file.path, encryptedFilePath, async (encryptedPath) => {
+      try {
+          const files = await getFilesFromPath(encryptedPath);
+          const cid = await client.put(files);
+          // Clean up: remove the encrypted file after upload
+          fs.unlink(encryptedPath, (err) => {
+              if (err) console.error('Failed to remove encrypted file:', err);
+          });
+          res.json({ success: true, cid });
+      } catch (error) {
+          console.error('Error uploading encrypted document to Web3.Storage:', error);
+          res.status(500).send('Failed to upload encrypted document.');
+      }
+  });
 });
 
-// Route for uploading numerical data
+const iv = crypto.randomBytes(16); // Initialization vector
+
+const encrypt = (text) => {
+    const cipher = crypto.createCipheriv(algorithm, secretKey, iv);
+    const encrypted = Buffer.concat([cipher.update(text), cipher.final()]);
+    return iv.toString('hex') + ':' + encrypted.toString('hex');
+};
+
 app.post('/api/uploadData', async (req, res) => {
-  const dataString = JSON.stringify(req.body);
-  const dataHash = CryptoJS.SHA256(dataString).toString();
+  const numericalData = req.body; // Directly receive data as text
+  const encryptedData = encrypt(numericalData);
+  
+  // Save the encrypted data to a temporary file
+  const tempFilePath = path.join(__dirname, 'tempData.txt');
+  fs.writeFileSync(tempFilePath, encryptedData);
 
-  // Encrypt and store the data
-  const encryptedData = CryptoJS.AES.encrypt(dataString, 'your-encryption-key').toString();
+  try {
+      // Upload the encrypted file to Web3.Storage
+      const files = await getFilesFromPath(tempFilePath);
+      const cid = await web3StorageClient.put(files);
+      
+      // Clean up: remove the temporary file
+      fs.unlinkSync(tempFilePath);
 
-  // Upload hash to smart contract and save reference in MongoDB
-  const contractResponse = await uploadDataToSmartContract(dataHash);
-  await Data.create({ data: encryptedData, hash: dataHash, contractAddress: contractResponse.address });
-
-  res.json({ success: true, message: 'Data uploaded and hashed successfully', dataHash });
+      res.json({ success: true, message: 'Numerical data encrypted and uploaded successfully.', cid });
+  } catch (error) {
+      console.error('Failed to upload numerical data:', error);
+      res.status(500).json({ success: false, message: 'Failed to upload numerical data.' });
+  }
 });
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
