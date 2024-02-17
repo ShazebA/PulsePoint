@@ -3,7 +3,7 @@ const multer = require('multer');
 const CryptoJS = require('crypto-js');
 const fs = require('fs');
 const path = require('path');
-const { uploadDocumentToSmartContract, uploadDataToSmartContract } = require('./smartContractInteractions');
+const { uploadDocumentToSmartContract, uploadDataToSmartContract } = require('../hedera/smartContractInteractions');
 const Document = require('./models/Document'); // Assume you have a Mongoose model for documents
 const Data = require('./models/Data'); // Assume a model for numerical data
 
