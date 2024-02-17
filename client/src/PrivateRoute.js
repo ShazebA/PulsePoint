@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import { Outlet, Navigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const PrivateRoute = () => {
-    const { isLoading,  isAuthenticated, loginWithRedirect, error, user } = useAuth0();
+    const { isLoading,  isAuthenticated, loginWithRedirect, error} = useAuth0();
     // console.log(isAuthenticated);
 
     if (isLoading){

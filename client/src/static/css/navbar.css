@@ -1,0 +1,26 @@
+
+
+nav {
+    position: relative;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: start;
+    align-items: center;
+    padding: 0 3rem;
+    gap: 2rem;
+}
+
+nav ul {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    list-style: none;
+    padding: 0;
+}
+
+nav div {
+    position: absolute;
+    right: 3rem;
+}
