@@ -4,10 +4,13 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
 
+const authRouter = require("./routes/auth/auth.js");
+
 const app = express();
-app.use(cors())
+app.use(cors());
 app.use(express.static(path.join(__dirname, '..', 'client','build')));
-app.use(express.json())
+app.use(express.json());
+app.use("/api/auth", authRouter);
 
 let port = process.env.PORT || 3001;
 
@@ -28,4 +31,6 @@ app.get('*', (req, res) => {
 app.listen(port, () => {
     console.log('Express started on port: ', port);
     });
+
+
     
