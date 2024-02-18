@@ -33,6 +33,29 @@
     margin-right: -1.25rem;
 }
 
+.card-row {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.health-card-input-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0.5rem;
+    width: 14.5rem;
+    height: 4rem;
+    background-color: #F5F3FF;
+    margin: 1rem 0;
+}
+
+.health-card-input-card input {
+    margin-left: 1.25rem;
+    width: 7rem;
+}
+
 .date-range-card {
     display: flex;
     flex-direction: column;
@@ -41,14 +64,14 @@
     width: 12rem;
     height: 4rem;
     background-color: #F5F3FF;
-    margin: 1.5rem 0;
+    margin: 1rem 0;
 }
 
 .health-info-card {
     display: flex;
     flex-direction: column;
     border-radius: 0.5rem;
-    width: 80rem;
+    width: 83rem;
     height: 25rem;
     background-color: #F5F3FF;
     margin: 0.5rem 0;
@@ -78,9 +101,10 @@
     font-size: 0.75rem;
     margin: 0;
     margin-left: 0.25rem;
+    padding: 0.25rem 0;
 }
 
-.bottom-cards-container {
+.card-row {
     display: flex;
     gap: 1.5rem;
 }
@@ -95,11 +119,54 @@
     margin: 1rem 0;
 }
 
+.assistant-interaction {
+    
+    margin-top: 1rem;
+    margin-left: 1rem;
+    padding: 0.5rem 0;
+}
+
+input {
+    font-family: inherit;
+    border-color: none;
+    border-radius: 25;
+    width: 13rem;
+}
+
+input::placeholder {
+    color: #333;
+    opacity: 0.5;
+    font-style: italic;
+}
+
+.container button {
+    cursor: pointer;
+    float: right;
+    margin-right: 1rem;
+    font-family: "Raleway";
+    font-weight: semi-bold;
+    background-color: #0c0c4c;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border: none;
+    border-radius: 0.3125rem;
+}
+
 .send-to-clinic-card {
     display: flex;
     flex-direction: column;
     border-radius: 0.5rem;
     width: 40rem;
+    height: 8.25rem;
+    background-color: #F5F3FF;
+    margin: 1rem 0;
+}
+
+.upload-documents-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.5rem;
+    width: 20rem;
     height: 8.25rem;
     background-color: #F5F3FF;
     margin: 1rem 0;
