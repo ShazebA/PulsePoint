@@ -5,7 +5,7 @@ const documentSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    documentIndex: {
+    documentHash: {
         type: Number,
         required: true
     }

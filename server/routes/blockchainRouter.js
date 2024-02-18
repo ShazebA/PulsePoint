@@ -64,7 +64,6 @@ const pinFileToIPFS = async (filePath) => {
 
 const secretKey = "WUA2jKM5ny7VXRpZYBij1gw0YaakN9QHqNfCSx9B2";
 let key = crypto.createHash('sha256').update(String(secretKey)).digest('base64').substr(0, 32);
-const ipfs = ipfsAPI('ipfs.infura.io', '5001', {protocol: 'https'})
 
 
 const router = express.Router();
@@ -168,7 +167,7 @@ router.post('/api/uploadData', async (req, res) => {
       const docLen = docs.length;
       const document = new Document({
             healthCardHASH: user,
-            documentIndex:  docLen + 11,
+            documentHash:  ipfsHash,
       });
       await document.save();
       uploadDocumentToSmartContract(ipfsHash, user, clinic )
@@ -218,6 +217,36 @@ router.get('/api/getDocument', async (req, res) => {
   } catch (error) {
     console.error('Error retrieving document from smart contract:', error);
     res.status(500).send('Failed to retrieve document from smart contract.');
+  }
+});
+
+router.get('/api/getDocumentFromIPFS', async (req, res) => {
+  const healthCardHASH = req.query.healthCardHASH; // or req.params.healthCardHASH if using route parameters
+
+  if (!healthCardHASH) {
+    return res.status(400).json({ success: false, message: 'Health card hash is required.' });
+  }
+
+  try {
+    // Find the document in the database
+    const document = await Document.findOne({ healthCardHASH });
+
+    if (!document) {
+      return res.status(404).json({ success: false, message: 'Document not found.' });
+    }
+
+    const ipfsHash = document.documentHash;
+    // Retrieve the file from IPFS
+    const file = await getFileFromIPFS(ipfsHash); // Adjust this function call based on your IPFS retrieval logic
+
+    // Send the file back to the client
+    // This step depends on the format of the file and how you want to return it
+    // For example, if it's a PDF, you might set the appropriate content-type header
+    res.setHeader('Content-Type', 'application/pdf');
+    res.send(file);
+  } catch (error) {
+    console.error('Error retrieving document:', error);
+    res.status(500).json({ success: false, message: 'Failed to retrieve document.' });
   }
 });
 

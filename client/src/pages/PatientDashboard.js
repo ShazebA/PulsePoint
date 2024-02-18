@@ -9,7 +9,7 @@ const PatientDashboard = ({ user }) => {
 
   useEffect(() => {
     // Fetch the patient data from your server
-    fetch('http://localhost:3002/patientData')
+    fetch('http://localhost:3003/patientData')
       .then(response => response.json())
       .then(data => {
         setData(data);

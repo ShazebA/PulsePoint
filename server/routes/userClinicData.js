@@ -66,22 +66,6 @@ router.get('/retrieveUser', async (req, res) => {
     }
 })
 
-router.post('/updateUser', async (req, res) => {
-    const body = req.body;
-
-    User.findOneAndUpdate({_id: body._id}, body, {new: true}).then(updated => {
-        if (updated){
-            console.log("From /updateUser: "+ updated);
-            res.status(200).json(updated);
-        } else {
-            return null;
-        }
-    }).catch(err => {
-        console.log(err);
-        res.status(400).json(err);
-    })
-});
-
 // creating new users
 router.post('/createUser', async (req, res) => {
     const body = req.body;
@@ -188,23 +172,34 @@ router.post('/addDependents', async(req, res) => {
     }
 })
 
-const clinics = [
-    {"name": "Hernandez-Simpson Clinic", "address": "742 Johnson Mall\nEast Kaylastad, AR 07938", "email": "warrenmark@taylor-lopez.net"},
-    {"name": "Martin Inc Clinic", "address": "38724 Kyle Alley\nKimberlyville, MT 52976", "email": "jasonbarnett@hotmail.com"},
-    {"name": "Kane-Lee Clinic", "address": "9791 Kristopher Underpass\nTimbury, CA 91457", "email": "katherinewilson@jackson.biz"},
-    {"name": "Strickland LLC Clinic", "address": "638 Jeremy Camp\nLisaport, MS 19245", "email": "kevinsparks@hotmail.com"},
-    {"name": "Atkinson PLC Clinic", "address": "291 Floyd Flats\nPorterstad, IA 65728", "email": "elizabeth99@yahoo.com"},
-    {"name": "Shaw-Gomez Clinic", "address": "8774 Harris Pines Suite 358\nSouth Elizabethmouth, KS 64247", "email": "warrenbianca@berg.com"},
-    {"name": "Peterson-Walters Clinic", "address": "336 Davis Street Apt. 998\nOrtizview, TX 35158", "email": "thomasdesiree@sullivan-jones.com"},
-    {"name": "Hughes, Mckinney and Warner Clinic", "address": "655 Paul Turnpike Suite 471\nHarveymouth, MD 95249", "email": "stacey46@yahoo.com"},
-    {"name": "Woodward, Vargas and Howell Clinic", "address": "980 Brown Grove Apt. 479\nRobertfurt, SC 81445", "email": "wdavis@gmail.com"},
-    {"name": "Johnson Group Clinic", "address": "63761 Mcintyre Extension Suite 825\nWallhaven, CT 86111", "email": "michelle83@yahoo.com"}
-];
-
+const patientData = {
+      "GLUCOSE": { "Result": generateRandomValue(), "Units": "mg/dL", "Reference Range": "74-106" },
+      "SODIUM": { "Result": generateRandomValue(), "Units": "mmol/L", "Reference Range": "135-145" },
+      "POTASSIUM": { "Result": generateRandomValue(), "Units": "mmol/L", "Reference Range": "3.5-5.2" },
+      "CHLORIDE": { "Result": generateRandomValue(), "Units": "mmol/L", "Reference Range": "96-106" },
+      "CARBON DIOXIDE (BICARBONATE)": { "Result": generateRandomValue(), "Units": "mmol/L", "Reference Range": "23-29" },
+      "BUN (BLOOD UREA NITROGEN)": { "Result": generateRandomValue(), "Units": "mg/dL", "Reference Range": "7-20" },
+      "CREATININE": { "Result": generateRandomValue(), "Units": "mg/dL", "Reference Range": "0.5-1.2" },
+      "BUN/CREATININE RATIO": { "Result": generateRandomValue(), "Units": "ratio", "Reference Range": "10-20" },
+      "IRON": { "Result": generateRandomValue(), "Units": "Âµg/dL", "Reference Range": "60-170" },
+      "URIC ACID": {"Result": generateRandomValue(3.5, 7.2), "Units": "mg/dL", "Reference Range": "3.5-7.2"},
+      "PHOSPHATE": {"Result": generateRandomValue(2.4, 4.1), "Units": "mg/dL", "Reference Range": "2.4-4.1"},
+      "CALCIUM": {"Result": generateRandomValue(8.6, 10.2), "Units": "mg/dL", "Reference Range": "8.6-10.2"},
+      "MAGNESIUM": {"Result": generateRandomValue(1.7, 2.2), "Units": "mg/dL", "Reference Range": "1.7-2.2"},
+      "CHOLESTEROL": {"Result": generateRandomValue(125, 200), "Units": "mg/dL", "Reference Range": "125-200"},
+      "HDL CHOLESTEROL": {"Result": generateRandomValue(40, 60), "Units": "mg/dL", "Reference Range": "> 40"},
+      "LDL CHOL., CALCULATED": {"Result": generateRandomValue(100, 129), "Units": "mg/dL", "Reference Range": "100-129"},
+      "TRIGLYCERIDES": {"Result": generateRandomValue(150, 199), "Units": "mg/dL", "Reference Range": "150-199"},
+      "PROTEIN, TOTAL": {"Result": generateRandomValue(6.0, 8.3), "Units": "g/dL", "Reference Range": "6.0-8.3"},
+      "ALBUMIN": {"Result": generateRandomValue(3.5, 5.0), "Units": "g/dL", "Reference Range": "3.5-5.0"},
+      "GLOBULIN, CALCULATED": {"Result": generateRandomValue(2.0, 3.5), "Units": "g/dL", "Reference Range": "2.0-3.5"},
+      "A/G RATIO": {"Result": generateRandomValue(1.1, 2.5), "Units": "ratio", "Reference Range": "1.1-2.5"},
+      "BILIRUBIN, TOTAL": {"Result": generateRandomValue(0.1, 1.2), "Units": "mg/dL", "Reference Range": "0.1-1.2"},
+      "BILIRUBIN, DIRECT": {"Result": generateRandomValue(0.0, 0.3), "Units": "mg/dL", "Reference Range": "0.0-0.3"},
+    };
 // Define a GET route for '/populateAddress'
-router.get('/populateClinic', (req, res) => {
+rou.get('/populateAddress', (req, res) => {
     // Respond with the list of clinics in JSON format
     res.json(clinics);
 });
-
 module.exports = router;
