@@ -21,23 +21,6 @@ const PatientDashboard = ({ user }) => {
       });
   }, []); 
 
-  const fetchAssistantData = () => {
-    // Ensure there is a prompt to send
-    if (!userPrompt.trim()) {
-      alert('Prompt cannot be empty.');
-      return;
-    }
-
-    // Send the prompt to the assistant endpoint
-    fetch(`http://localhost:3002/assistant?prompt=${encodeURIComponent(userPrompt)}`)
-      .then(response => response.json())
-      .then(data => {
-        setAssistantResponse(data);
-      })
-      .catch(error => {
-        console.error('Error fetching assistant data:', error);
-      });
-  };
 
 
 
@@ -81,6 +64,22 @@ const PatientDashboard = ({ user }) => {
           <div class="ai-assistant-card">
             <h2>AI Assistant</h2>
             <h1>Discover AI Health Insights</h1>
+            <div className="assistant-interaction">
+        <input
+          type="text"
+          value={userPrompt}
+          onChange={(e) => setUserPrompt(e.target.value)}
+          placeholder="Ask a question..."
+        />
+        <button onClick={""}>Submit</button>
+      </div>
+
+      {assistantResponse && (
+        <div className="assistant-response">
+          <h2>Assistant's Response</h2>
+          <p>{assistantResponse}</p>
+        </div>
+      )}
          
           </div>
 
