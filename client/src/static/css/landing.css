@@ -1,9 +1,93 @@
-.banner {
-    border-radius: 1.5625rem;
-    background: linear-gradient(180deg, #E9EFFD 0%, #F3EBF6 100%);
-    }
-
-.card {
-    display: flex;
-    justify-content: center;
+section {
+    margin: 0;
 }
+
+.hero {
+    /* display: flex;
+    justify-content: center; */
+    max-width: 100%;
+    max-height: 100%;
+    margin-top: 3rem;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    position: relative;
+}
+
+.banner {
+    z-index: 0;
+    position: relative;
+    border-radius: 1.5625rem;
+    height: 80vh;
+    width: 90vw;
+    background: linear-gradient(180deg, #E9EFFD 0%, #F3EBF6 100%);
+}
+
+.hero-message {
+    z-index: 1;
+    padding-top: 20vh;
+    padding-left: 5rem;
+}
+
+.hero-message h2 {
+    margin-left: 5rem;
+    color: #0C0C4C;
+    font-size: 3rem;
+    margin: 0;
+
+}
+
+.hero-message h1 {
+    font-size: 4.5rem;
+    background: linear-gradient(180deg, #0C0C4C 0%, #7D18AE 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+ 
+}
+
+.hero-message p {
+    margin-top: 1rem;
+    color: #313131;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.hero-message button {
+    transition: 0.1s ease;
+    cursor: pointer;
+    margin-top: 2rem;
+    font: inherit;
+    color: white;
+    border: none;
+    padding: 1.25rem 2.5rem;
+    border-radius: 0.3125rem;
+    background: #0C0C4C;
+}
+
+.hero-message button:hover {
+    background: #7D18AE;
+}
+
+.dna {
+    position: absolute;
+    right: 10rem;
+    top: 0;
+    z-index: 0;
+    margin: 0;
+    height: 100%;
+    width: 35%;
+    max-width: 35%
+}
+
+
+.waves {
+    position: absolute;
+    bottom: 0;
+    z-index: -1; /* Increase the z-index value to layer it above other elements */
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
