@@ -24,7 +24,7 @@ section {
 
 .hero-message {
     z-index: 1;
-    padding-top: 8.5rem;
+    padding-top: 20vh;
     padding-left: 5rem;
 }
 
@@ -52,6 +52,16 @@ section {
     font-size: 1.25rem;
     font-weight: 500;
     line-height: normal;
+}
+
+.hero-message button {
+    margin-top: 2%;
+    font: inherit;
+    color: white;
+    border: none;
+    padding: 1.25rem 2.5rem;
+    border-radius: 0.3125rem;
+    background: #0C0C4C;
 }
 
 .dna {

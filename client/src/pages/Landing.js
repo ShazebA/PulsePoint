@@ -22,9 +22,9 @@ const Landing = () => {
                         PulsePoint brings the Blockchain solution to<br></br>
                         emergency room off-loading.
                         </p>
+                        <button>Get Started</button>
                     </div>
                     <img class="dna" src={dna} alt="DNA Graphic"/>
-
                 </div>
             </div>
         </section>
