@@ -6,17 +6,12 @@ import dna from '../images/better_dna.png';
 const Landing = () => {
     return (
         <section>
-            <div class="card">
-
+            <div class="hero">
                 {/*DNA*/}
                 {/* <img class="logo" src={dna} alt="PulsePoint Logo" width="100" height="auto" /> */}
-
-                <div class="hero">
-                    <div class="banner">
-                        
-                    </div>
+                <div class="banner">
+                    
                 </div>
-
                 {/* <svg class="banner" width="800" height="auto" viewBox="0 0 1305 679" fill="none" xmlns="http://www.w3.org/2000/svg"> */}
 
                 {/*waves*/}

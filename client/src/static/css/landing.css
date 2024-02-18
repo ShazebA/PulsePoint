@@ -1,10 +1,15 @@
-.banner {
-    border-radius: 1.5625rem;
-    background: linear-gradient(180deg, #E9EFFD 0%, #F3EBF6 100%);
-    }
-
-.card {
+.hero {
     display: flex;
     justify-content: center;
 }
 
+.banner {
+    margin-top: 3rem;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    margin-bottom: 2.5rem;
+    border-radius: 1.5625rem;
+    height: 39rem;
+    width: 100vw;
+    background: linear-gradient(180deg, #E9EFFD 0%, #F3EBF6 100%);
+}
