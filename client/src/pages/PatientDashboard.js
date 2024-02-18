@@ -1,9 +1,27 @@
 
-import {React, useState} from "react";
+import {React, useState, useEffect} from "react";
 
 
 const PatientDashboard = ({ user }) => {
   const [isVerified, setIsVerified] = useState(user.isVerified);
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    // Fetch the patient data from your server
+    fetch('http://localhost:3002/patientData')
+      .then(response => response.json())
+      .then(data => {
+        setData(data);
+      })
+      .catch(error => {
+        console.error('Error fetching patient data:', error);
+      });
+  }, []); // The empty array ensures this effect
+
+
+
+
+
   return (
       <div class="container">
         {/* <div class="login-info">
@@ -29,6 +47,7 @@ const PatientDashboard = ({ user }) => {
             <h1>Your Health Statistics</h1>
           </div>
           <div class="health-info-data">
+<<<<<<< Updated upstream
             <div class="row">
               <h2>Health Card ID:</h2>
               <p>7423-713-042-KA</p>
@@ -37,6 +56,18 @@ const PatientDashboard = ({ user }) => {
               <h2>Scoliosis:</h2>
               <p>Yes</p>
             </div>
+=======
+          {Object.entries(data).map(([testName, testDetails]) => (
+            <div key={testName}>
+              <h2>{testName}</h2>
+              <p>Result: {testDetails.Result}</p>
+              <p>Units: {testDetails.Units}</p>
+              <p>Reference Range: {testDetails['Reference Range']}</p>
+            </div>
+          ))}
+            <p>Health Card ID: 7423-713-042-KA</p>
+            <p>Scoliosis: Present</p>
+>>>>>>> Stashed changes
           </div>
         </div>
 

@@ -1,11 +1,11 @@
 const express = require('express');
 const User = require('../schemas/User');
 const Clinic = require('../schemas/Clinic');
-const app = express();
+const router = express.Router();
 
-app.use(express.json());
+router.use(express.json());
 
-app.get('/verifyUser', async (req, res) => {
+router.get('/verifyUser', async (req, res) => {
     const params = req.query;
     console.log("From /verifyUser");
     try {
@@ -24,7 +24,7 @@ app.get('/verifyUser', async (req, res) => {
 });
 
 //Route for retrieving user data
-app.get('/retrieveUser', async (req, res) => {
+router.get('/retrieveUser', async (req, res) => {
     const userId = req.query.userId;
 
     try{
@@ -42,7 +42,7 @@ app.get('/retrieveUser', async (req, res) => {
 })
 
 // creating new users
-app.post('/createUser', async (req, res) => {
+router.post('/createUser', async (req, res) => {
     const body = req.body;
     console.log("From /createUser: " + body);
     try {
@@ -64,7 +64,7 @@ app.post('/createUser', async (req, res) => {
 })
 
 //Route for retrieving clinic data
-app.get('/retrieveClinic', async(req, res) => {
+router.get('/retrieveClinic', async(req, res) => {
 
     const clinicId = req.body.clinicId;
 
@@ -85,7 +85,7 @@ app.get('/retrieveClinic', async(req, res) => {
 
 
 // creating new clinics
-app.post('/createClinic', async(req, res) => {
+router.post('/createClinic', async(req, res) => {
     const body = req.body;
     try {
         const clinic = new Clinic({
@@ -107,7 +107,7 @@ app.post('/createClinic', async(req, res) => {
 })
 
 //send health card data
-app.post('/healthCardData', async(req, res) => {
+router.post('/healthCardData', async(req, res) => {
 
     const userId = req.user.userId;
 
@@ -126,7 +126,7 @@ app.post('/healthCardData', async(req, res) => {
 })
 
 //update dependents of the user, given user's healcardHASH
-app.post('/addDependents', async(req, res) => {
+router.post('/addDependents', async(req, res) => {
 
     const healthcardHASH = req.healthcardHASH;
 
@@ -147,4 +147,4 @@ app.post('/addDependents', async(req, res) => {
     }
 })
 
-module.exports = app;
+module.exports = router;

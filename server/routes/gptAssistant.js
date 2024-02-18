@@ -1,5 +1,5 @@
 const express = require('express');
-const app = express();
+const router = express.Router();
 
 
 async function send(prompt) {
@@ -26,7 +26,7 @@ async function send(prompt) {
     const run = await openai.beta.threads.runs.create(
       thread.id,
       { 
-        assistant_id: "asst_oeIa0VouPWYhpFVTdMiq7kq3", // asst_L1M9sbwhGxa5k47ap4Ed4kx9
+        assistant_id: "asst_RjCesu6HoMsIQofE4ZF1ZOXF", // asst_L1M9sbwhGxa5k47ap4Ed4kx9
       }
     );
 
@@ -37,10 +37,6 @@ async function send(prompt) {
         const replies = await openai.beta.threads.messages.list(threadId);
         const assistantObject = replies.body.data.find(message => message.role === "assistant");
         const assistantContent = assistantObject.content[0].text.value;
-        console.log(assistantContent);
-        const jsonMatch = assistantContent.match(/```json([\s\S]*?)```/);
-        const jsonString = jsonMatch ? jsonMatch[1].trim() : '';
-        console.log(jsonString);
         let assistantData;
         try {
           assistantData = JSON.parse(assistantContent);
@@ -63,7 +59,7 @@ async function send(prompt) {
 
 
 //Route for retrieving gpt text, given user input
-app.get('/assistant', async (req, res) => {
+router.get('/assistant', async (req, res) => {
 	const assistantText = "";
 	const userPrompt = req.prompt;
 
@@ -85,3 +81,6 @@ app.get('/assistant', async (req, res) => {
 
 
 });
+
+
+module.exports = router;

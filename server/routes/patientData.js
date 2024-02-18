@@ -1,31 +1,26 @@
+const { mode } = require('crypto-js');
 const express = require('express');
-const app = express();
+const router = express.Router();
 
-//to read in .testnames
-const fs = require('fs');
-const readline = require('readline');
 
-//Route for sending patient data
-app.get('/patientData', async (req, res) => {
-    const patientData = {};
+const generateRandomValue = () => Math.floor(Math.random() * 90) + 10;
 
-    const file = readline.createInterface({ 
-        input: fs.createReadStream('.testnames'), 
-        output: process.stdout, 
-        terminal: false
-    }); 
 
-    //each time a line is read from the filestream, populate patientData with the testName and its values
-    file.on('line', (line) => { 
-        //'line' is a test name
-        console.log(line); 
-        patientData.line =  {"Result": null, "Units": null, "Reference Range": null};
-    });
+router.get('/patientData', (req, res) => {
+    const patientData = {
+      "GLUCOSE": { "Result": generateRandomValue(), "Units": "mg/dL", "Reference Range": "74-106" },
+      "SODIUM": { "Result": generateRandomValue(), "Units": "mmol/L", "Reference Range": "135-145" },
+      "POTASSIUM": { "Result": generateRandomValue(), "Units": "mmol/L", "Reference Range": "3.5-5.2" },
+      "CHLORIDE": { "Result": generateRandomValue(), "Units": "mmol/L", "Reference Range": "96-106" },
+      "CARBON DIOXIDE (BICARBONATE)": { "Result": generateRandomValue(), "Units": "mmol/L", "Reference Range": "23-29" },
+      "BUN (BLOOD UREA NITROGEN)": { "Result": generateRandomValue(), "Units": "mg/dL", "Reference Range": "7-20" },
+      "CREATININE": { "Result": generateRandomValue(), "Units": "mg/dL", "Reference Range": "0.5-1.2" },
+      "BUN/CREATININE RATIO": { "Result": generateRandomValue(), "Units": "ratio", "Reference Range": "10-20" },
+      "IRON": { "Result": generateRandomValue(), "Units": "µg/dL", "Reference Range": "60-170" },
+    };
+  
+    res.json(patientData);
+  });
+  
 
-    try{
-        res.status(200).send(JSON.stringify(patientData));
-    }catch(err){
-        console.log(err);
-        res.status(500).json(err);
-    }
-})
+module.exports = router;
