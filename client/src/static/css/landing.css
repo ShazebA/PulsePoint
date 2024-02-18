@@ -3,8 +3,6 @@ section {
 }
 
 .hero {
-    /* display: flex;
-    justify-content: center; */
     max-width: 100%;
     max-height: 100%;
     margin-top: 3rem;
@@ -35,7 +33,6 @@ section {
     color: #0C0C4C;
     font-size: 3rem;
     margin: 0;
-
 }
 
 .hero-message h1 {
@@ -45,7 +42,6 @@ section {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin: 0;
- 
 }
 
 .hero-message p {

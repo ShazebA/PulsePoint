@@ -12,6 +12,8 @@ import Verify from './pages/Verify';
 import './static/css/globals.css';
 import './static/css/navbar.css';
 import './static/css/landing.css';
+import './static/css/patient-dashboard.css';
+import './static/css/clinic-dashboard.css';
 
 function App() {
   
