@@ -1,43 +1,6 @@
 import { React, useState, useEffect } from "react";
 
 const PatientDashboard = ({ user }) => {
-  // console.log({...user});
-  const [getUser, setUser] = useState(user);
-  const [healthcard, setHealthcard] = useState("");
-
-  const updateUser = () => {
-    setUser({...getUser,
-      healthCardHASH: healthcard,
-      isVerified: true})
-  }
-
-  const verify = () => {
-    try {
-      console.log(getUser);
-      updateUser();
-      console.log("getUser: " + JSON.stringify(getUser));
-      const config = {
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(getUser)
-      }
-      fetch('http://localhost:3002/updateUser', config).then(res => {
-        if (!res.ok){
-          throw new Error("Could not update user");
-        } 
-        return res.json();
-      }).then(data => {
-        console.log(data)
-        if (data){
-          setUser(data);
-        }
-      })
-    } catch(err) {
-      console.log(err)
-    }
-  }
   const [data, setData] = useState({});
   const [userPrompt, setUserPrompt] = useState('');
   const [assistantResponse, setAssistantResponse] = useState('');
@@ -82,20 +45,6 @@ const PatientDashboard = ({ user }) => {
 
   return (
       <div class="container">
-        {!getUser.isVerified && 
-        <>
-        <input type="text" content={healthcard} onChange={e => setHealthcard(e)}/>
-        <button onClick={verify}>Submit</button>
-        </>}
-        {/* <div class="login-info">
-    <div class="container">
-      {/* <div class="login-info">
-    <div class="container">
-      {/* <div class="login-info">
-          <h1>Welcome, {user.firstName}!</h1>
-          <p>{user.email}</p>
-        </div> */}
-
       <div class="card-row">
         <div class="health-card-input-card">
           <h2>Add Health Card</h2>

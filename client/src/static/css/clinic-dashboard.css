@@ -6,7 +6,7 @@ section {
     gap: 1rem;
     padding: 2rem;
 
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: 1.5fr 1.5fr  repeat(4, 1fr);
     grid-template-rows: repeat(9, 1fr);
 }
 .card {
@@ -15,7 +15,6 @@ section {
     border-radius: 10px;
     background: #F5F3FF;
     position: relative;
-    
 }
 
 .card-title {
@@ -28,6 +27,8 @@ section {
     position: absolute;
     top: 10px;
     left: 15px;
+    margin: 0 !important;
+    width: max-content;
 }
 
 .card-heading {
@@ -35,6 +36,7 @@ section {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    width: max-content;
 }
 .card-heading h3 {
 color: #444;
@@ -53,6 +55,9 @@ p {
 .import {
     grid-column: 1 / span 3;
     grid-row: 1 / 2;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
 }
 
 .date-range {
@@ -68,9 +73,34 @@ p {
 .health-info {
     grid-column: 1 / 9;
     grid-row: 3 / span 3;
+    flex-flow: column nowrap;
+    
 }
 
 .assistant {
     grid-column: 1/ span 2;
     grid-row: 6;
+}
+
+.container button {
+    cursor: pointer;
+    float: right;
+    margin-right: 1rem;
+    font-family: "Raleway";
+    font-weight: semi-bold;
+    background-color: #0c0c4c;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border: none;
+    border-radius: 0.3125rem;
+}
+
+.text-content {
+    color: #676767;
+
+    font-family: Raleway;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 }
