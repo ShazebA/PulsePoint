@@ -1,9 +1,10 @@
 import React from "react";
 import dna from '../images/better_dna.png';
-// import { Link } from 'react-router-dom';
+import { redirect } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Landing = () => {
+    const { isAuthenticated, loginWithRedirect, logout} = useAuth0();
     return (
         <section>
             <div class="hero">
@@ -22,7 +23,9 @@ const Landing = () => {
                         PulsePoint brings the Blockchain solution to<br></br>
                         emergency room off-loading.
                         </p>
-                        <button>Get Started</button>
+                        {isAuthenticated ? 
+                        <button onClick={() => redirect("/dashboard")}>Enter Dashboard</button>: 
+                        <button onClick={() => loginWithRedirect({})}>Get Started</button>}
                     </div>
                     <img class="dna" src={dna} alt="DNA Graphic"/>
                 </div>
