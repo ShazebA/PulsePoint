@@ -55,13 +55,19 @@ section {
 }
 
 .hero-message button {
-    margin-top: 2%;
+    transition: 0.1s ease;
+    cursor: pointer;
+    margin-top: 2rem;
     font: inherit;
     color: white;
     border: none;
     padding: 1.25rem 2.5rem;
     border-radius: 0.3125rem;
     background: #0C0C4C;
+}
+
+.hero-message button:hover {
+    background: #7D18AE;
 }
 
 .dna {
