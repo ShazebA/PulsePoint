@@ -117,3 +117,9 @@ nav a {
         display: none;
     }
 }
+
+@media (max-width: 650px) {
+    nav div .dropdown {
+        display: none;
+    }
+}
