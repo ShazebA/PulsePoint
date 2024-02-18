@@ -150,11 +150,24 @@ const PatientDashboard = ({ user }) => {
 
         <div class="upload-documents-card">
           <h2>Upload Documents</h2>
-          <h1>Send EMR to Clinic</h1>
+          <div class="dropbox-container">
+            <div class="dropbox">
+              <svg width="40" height="49" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_2462_907)">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M45.7333 29.4C43.9301 29.4 42.4667 30.8634 42.4667 32.6666V39.2H6.53333V32.6666C6.53333 30.8634 5.06987 29.4 3.26667 29.4C1.46347 29.4 0 30.8634 0 32.6666V44.1C0 44.8823 0.850967 45.7333 1.63333 45.7333H47.3667C48.3532 45.7333 49 44.9852 49 44.1V32.6666C49 30.8634 47.5365 29.4 45.7333 29.4ZM17.9667 16.3333H21.2333V31.0333C21.2333 32.8365 22.6968 34.3 24.5 34.3C26.3032 34.3 27.7667 32.8365 27.7667 31.0333V16.3333H31.0333C32.1832 16.3333 33.1991 16.4885 33.841 15.8433C34.4797 15.2014 34.4797 14.1577 33.841 13.5142L25.7675 3.72891C25.4245 3.38591 24.972 3.23886 24.5261 3.26336C24.0786 3.23886 23.6261 3.38591 23.2848 3.72891L15.2112 13.5142C14.5709 14.1577 14.5709 15.2014 15.2112 15.8433C15.8515 16.4885 17.3264 16.3333 17.9667 16.3333Z" fill="#444444"/>
+              </g>
+              <defs>
+              <clipPath id="clip0_2462_907">
+              <rect width="49" height="49" fill="white"/>
+              </clipPath>
+              </defs>
+              </svg>
+            </div>
+          </div>
         </div>
-        <h1>Hello, {user.firstName}!</h1>
+        {/* <h1>Hello, {user.firstName}!</h1>
         <h2>Patient</h2>
-        <p>{user.email}</p>
+        <p>{user.email}</p> */}
       </div>
 
     </div>
