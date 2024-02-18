@@ -3,21 +3,21 @@
 }
 
 
-h2 {
+.container h2 {
     margin: 0 1.25rem;
     margin-bottom: 0.5rem;
     font-size: 0.75rem;
     color: #6a6a6a;
 }
 
-h1 {
+.container h1 {
     margin: 0 1.25rem;
     color: #444;
     font-size: 1rem;
 
 }
 
-p {
+.container p {
     margin: 0 1.25rem;
 }
 
@@ -60,6 +60,24 @@ p {
 
 .health-info-data {
     margin-top: 1rem;
+}
+
+.health-info-data .row {
+    display: flex;
+    font: inherit;
+    align-items: baseline;
+}
+
+.health-info-data .row h2 {
+    color: #444;
+    margin: 0;
+    margin-left: 1.25rem;
+}
+
+.health-info-data .row p {
+    font-size: 0.75rem;
+    margin: 0;
+    margin-left: 0.25rem;
 }
 
 .bottom-cards-container {

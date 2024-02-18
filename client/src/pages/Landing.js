@@ -22,10 +22,13 @@ const Landing = () => {
                         <div class="hero-message">
                             <h2>The Future of Urgent Care</h2>
                             <h1>PulsePoint</h1>
-                            <p>
-                            PulsePoint brings the Blockchain solution to<br></br>
-                            emergency room off-loading.
-                            </p>
+                            <div class="hero-description"> 
+                                <p>
+                                PulsePoint brings the Blockchain solution to<br></br>
+                                emergency room off-loading.
+                                </p>
+                            </div>
+
                             {isAuthenticated ? 
                             <Link to="/dashboard">Enter Dashboard</Link>: 
                             <Link onClick={() => loginWithRedirect()}>Get Started</Link>}
