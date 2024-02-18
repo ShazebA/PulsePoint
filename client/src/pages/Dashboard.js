@@ -1,21 +1,41 @@
-import React from "react";
+import {React, Navigate, useState, useEffect} from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import PatientDashboard from "./PatientDashboard";
+import ClinicDashboard from "./ClinicDashboard";
 
 const Dashboard = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
-
-  if (isLoading) {
-    return <div>Loading ...</div>;
-  }
+    const { user, isAuthenticated, loginWithRedirect} = useAuth0();
+    const [getUser, setUser] = useState(null);
+  
+    useEffect(() => {
+      const handleSetup = () => {
+        try {
+          const queryParameters = new URLSearchParams({
+            email: user.email
+          })
+          fetch(`http://localhost:3002/verifyUser?${queryParameters}`).then(response => {
+            if (!response.ok){
+              throw new Error("Failed to fetch user");
+            }
+            return response.user;
+          }).then(userExists => {
+            if (userExists){
+              setUser(userExists);
+            }
+          })
+        } catch(err) {
+          console.log(err);
+        }
+      }
+      if (isAuthenticated){
+        handleSetup();
+      }
+    }, [isAuthenticated, user]);
 
   return (
-    isAuthenticated && (
-      <div>
-        <img src={user.picture} alt={user.name} />
-        <h2>{user.name}</h2>
-        <p>{user.email}</p>
-      </div>
-    )
+    <>
+    {isAuthenticated ? (getUser && getUser.isClinic ? <ClinicDashboard /> : <PatientDashboard />) : <Navigate to={loginWithRedirect()} />}
+    </>
   );
 };
 

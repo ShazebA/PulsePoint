@@ -5,27 +5,26 @@ const app = express();
 
 app.use(express.json());
 
-app.post('/verifyUser', async (req, res) => {
-    const body = req.body;
-
+app.get('/verifyUser', async (req, res) => {
+    const params = req.query;
     try {
-        await User.findOne({email: body.email}, (err, user) => {
-            // if (!user){
-            //     console.error(err);
-            //     return res.json(err);
-            // }
-
-            res.json(user);
+        User.findOne({email: params.email}).then(result => {
+            res.json(result);
+        }).catch(error => {
+            if(error){
+                console.log(error);
+                return res.json(error);
+            }
         });
     } catch(err) {
-        console.error("ERRORRRRR" + err);
+        console.error("From /verifyUser: " + err);
         res.status(500).json(err);
     }
 });
 
 //Route for retrieving user data
 app.get('/retrieveUser', async (req, res) => {
-    const userId = req.user.userId;
+    const userId = req.query.userId;
 
     try{
         const userData = await User.findOne({userId});
@@ -44,7 +43,7 @@ app.get('/retrieveUser', async (req, res) => {
 // creating new users
 app.post('/createUser', async (req, res) => {
     const body = req.body;
-
+    console.log(body);
     try {
         const user = new User({
             firstName: body.firstName,
@@ -58,7 +57,7 @@ app.post('/createUser', async (req, res) => {
         }
         res.status(200).json(newUser);
     } catch(err){
-        console.log(err);
+        console.log("From /createUser: " + err);
         res.status(500).json(err);
     }
 })

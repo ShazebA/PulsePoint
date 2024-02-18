@@ -20,8 +20,10 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "options": {
+  "options":{
+    "allowedHost": ["localhost"],
     "proxy": "http://localhost:3002"
+
   },
   "eslintConfig": {
     "extends": [

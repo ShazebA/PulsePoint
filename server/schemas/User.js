@@ -30,7 +30,8 @@ const userSchema = mongoose.Schema({
     },
     healthcardHASH: {
         type: String,
-        required: false
+        required: false,
+        default: "000000000000"
     },
     dateOfBirth: {
         type: Date,
@@ -44,6 +45,11 @@ const userSchema = mongoose.Schema({
     dependants: {
         type: Array,
         required: false
+    },
+    isClinic: {
+        type: Boolean,
+        required: true,
+        default: false
     }
 });
 
