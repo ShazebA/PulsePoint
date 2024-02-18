@@ -188,4 +188,23 @@ router.post('/addDependents', async(req, res) => {
     }
 })
 
+const clinics = [
+    {"name": "Hernandez-Simpson Clinic", "address": "742 Johnson Mall\nEast Kaylastad, AR 07938", "email": "warrenmark@taylor-lopez.net"},
+    {"name": "Martin Inc Clinic", "address": "38724 Kyle Alley\nKimberlyville, MT 52976", "email": "jasonbarnett@hotmail.com"},
+    {"name": "Kane-Lee Clinic", "address": "9791 Kristopher Underpass\nTimbury, CA 91457", "email": "katherinewilson@jackson.biz"},
+    {"name": "Strickland LLC Clinic", "address": "638 Jeremy Camp\nLisaport, MS 19245", "email": "kevinsparks@hotmail.com"},
+    {"name": "Atkinson PLC Clinic", "address": "291 Floyd Flats\nPorterstad, IA 65728", "email": "elizabeth99@yahoo.com"},
+    {"name": "Shaw-Gomez Clinic", "address": "8774 Harris Pines Suite 358\nSouth Elizabethmouth, KS 64247", "email": "warrenbianca@berg.com"},
+    {"name": "Peterson-Walters Clinic", "address": "336 Davis Street Apt. 998\nOrtizview, TX 35158", "email": "thomasdesiree@sullivan-jones.com"},
+    {"name": "Hughes, Mckinney and Warner Clinic", "address": "655 Paul Turnpike Suite 471\nHarveymouth, MD 95249", "email": "stacey46@yahoo.com"},
+    {"name": "Woodward, Vargas and Howell Clinic", "address": "980 Brown Grove Apt. 479\nRobertfurt, SC 81445", "email": "wdavis@gmail.com"},
+    {"name": "Johnson Group Clinic", "address": "63761 Mcintyre Extension Suite 825\nWallhaven, CT 86111", "email": "michelle83@yahoo.com"}
+];
+
+// Define a GET route for '/populateAddress'
+router.get('/populateClinic', (req, res) => {
+    // Respond with the list of clinics in JSON format
+    res.json(clinics);
+});
+
 module.exports = router;

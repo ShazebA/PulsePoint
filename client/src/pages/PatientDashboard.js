@@ -4,6 +4,7 @@ const PatientDashboard = ({ user }) => {
   const [data, setData] = useState({});
   const [userPrompt, setUserPrompt] = useState('');
   const [assistantResponse, setAssistantResponse] = useState('');
+  const [clinics, setClinics] = useState({});
 
 
   useEffect(() => {
@@ -17,6 +18,17 @@ const PatientDashboard = ({ user }) => {
         console.error('Error fetching patient data:', error);
       });
   }, []);
+
+  useEffect(() => {
+    fetch('http://localhost:3002/populateClinic')
+      .then(response => response.json())
+      .then(retrieved => {
+        setClinics(retrieved);
+      })
+      .catch(error => {
+        console.error('Error while fetching clinic data: ', error);
+      })
+  })
 
   const [healthCard, setHealthCard] = useState('');
 
@@ -126,6 +138,14 @@ const PatientDashboard = ({ user }) => {
         <div class="send-to-clinic-card">
           <h2>Send to Clinic</h2>
           <h1>Send EMR to Clinic</h1>
+          <select>
+          {Object.entries(clinics).map(([clinicKey, clinicDetails]) => (
+            <option key={clinicKey} value={clinicDetails}>
+              {clinicDetails.name}
+            </option>
+          ))}
+          </select>
+          <button>Send</button>
         </div>
 
         <div class="upload-documents-card">
