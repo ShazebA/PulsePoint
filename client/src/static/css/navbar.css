@@ -4,10 +4,6 @@ img {
     margin-right: -0.25rem;
 }
 
-.dropdown {
-    transition: 0.15s ease-out;
-}
-
 nav {
     background-color: #FFF;
     position: relative;
@@ -22,8 +18,18 @@ nav {
 
 nav h1 {
     color: #1e1e1e;
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     margin-right: 1.5rem;
+}
+
+nav h2 {
+    margin-left: -2.5rem;
+    margin-right: 1.5rem;
+    font-size: 1.25rem;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.75) 0%, rgba(147, 123, 255, 0.75) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 nav ul {
@@ -41,9 +47,14 @@ nav ul li {
     font-size: 14px;
 }
 
-nav ul li:hover .dropdown {
+.dropdown-icon {
+    transition: 0.15s ease-out;
+}
+
+nav ul li:hover .dropdown-icon {
     transform: scaleY(-1) translateY(2px);
 }
+
 /* 
 nav ul li:hover .dropdown {
     transform: translateX(10px) translateY(-2px) rotate(-180deg);
@@ -57,7 +68,15 @@ nav div {
     gap: 1rem;
 }
 
-nav div .dark {
+nav div .dropdown {
+    display: none;
+    width: 2rem;
+    cursor: pointer;
+    padding-right: 1rem;
+    padding-left: .5rem;
+}
+
+nav div .dark-mode {
     cursor: pointer;
     padding-right: 1rem;
     padding-left: .5rem;
@@ -89,3 +108,12 @@ nav a {
     gap: 1rem;
 }
 
+@media (max-width: 1150px) {
+    nav div .dropdown {
+        display: block;
+    }
+
+    nav ul {
+        display: none;
+    }
+}
