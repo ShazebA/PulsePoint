@@ -42,7 +42,7 @@ nav ul li {
 }
 
 nav ul li:hover .dropdown {
-    transform: scaleY(-1);
+    transform: scaleY(-1) translateY(2px);
 }
 /* 
 nav ul li:hover .dropdown {
