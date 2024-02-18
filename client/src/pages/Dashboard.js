@@ -22,11 +22,11 @@ const Dashboard = () => {
             return response.json();
           }).then(data => {
 
-            console.log("User Info: " + data);
             // setUser(data);
             if (data){
               setUser(data);
             }
+            console.log("User Info: " + JSON.stringify(getUser));
           })
         } catch(err) {
           console.log(err);

@@ -41,6 +41,22 @@ router.get('/retrieveUser', async (req, res) => {
     }
 })
 
+app.post('/updateUser', async (req, res) => {
+    const body = req.body;
+
+    User.findOneAndUpdate({_id: body._id}, body, {new: true}).then(updated => {
+        if (updated){
+            console.log("From /updateUser: "+ updated);
+            res.status(200).json(updated);
+        } else {
+            return null;
+        }
+    }).catch(err => {
+        console.log(err);
+        res.status(400).json(err);
+    })
+});
+
 // creating new users
 router.post('/createUser', async (req, res) => {
     const body = req.body;
