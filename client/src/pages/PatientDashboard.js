@@ -1,7 +1,9 @@
-import React from "react";
+
+import {React, useState} from "react";
+
 
 const PatientDashboard = ({ user }) => {
-  console.log(user);
+  const [isVerified, setIsVerified] = useState(user.isVerified);
   return (
       <div>
         <h1>Hello, {user.firstName}!</h1>

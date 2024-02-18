@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import history from './history';
 import Dashboard from './pages/Dashboard';
 import Nav from './components/Nav';
+import LandingNav from './components/LandingNav';
 import Landing from './pages/Landing';
 import PrivateRoute from './PrivateRoute';
 import Verify from './pages/Verify';
@@ -16,7 +17,6 @@ function App() {
   
   return (
     <Router history={history}>
-      <Nav />
       <Routes>
         <Route exact index element={<Landing />}/>
         <Route element={<PrivateRoute />}>
