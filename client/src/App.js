@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import history from './history';
 
 import Nav from './components/Nav';
-import Info from './pages/Info';
+import Landing from './pages/Landing';
 import Dashboard from './pages/Dashboard';
 import PrivateRoute from './PrivateRoute';
 
@@ -18,7 +18,7 @@ function App() {
     <Router history={history}>
       <Nav />
       <Routes>
-        <Route exact index element={<Info />}/>
+        <Route exact index element={<Landing />}/>
         <Route element={<PrivateRoute />}>
           <Route path="dashboard" element={<Dashboard />}/>
         </Route>

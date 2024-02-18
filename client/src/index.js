@@ -9,7 +9,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
 const providerConfig = {
-  domain: "https://dev-8ytwn8nglpbeo6k7.us.auth0.com",
+  domain: "dev-8ytwn8nglpbeo6k7.us.auth0.com",
   clientId: "o0UNRj0w4vAbiQQLqxkiYQkh6vphHKu2",
   redirectUri: "http://localhost:3000/dashboard"
 };
