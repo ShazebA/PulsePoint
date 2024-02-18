@@ -20,6 +20,7 @@ const Dashboard = () => {
             return response.user;
           }).then(userExists => {
             if (userExists){
+              console.log("User Info: " + userExists);
               setUser(userExists);
             }
           })
@@ -34,7 +35,7 @@ const Dashboard = () => {
 
   return (
     <>
-    {isAuthenticated ? (getUser && getUser.isClinic ? <ClinicDashboard /> : <PatientDashboard />) : <Navigate to={loginWithRedirect()} />}
+    {isAuthenticated ? (getUser && getUser.isClinic ? <ClinicDashboard user={getUser} /> : <PatientDashboard user={getUser} />) : <Navigate to={loginWithRedirect()} />}
     </>
   );
 };

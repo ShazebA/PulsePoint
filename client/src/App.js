@@ -13,9 +13,6 @@ import './static/css/navbar.css';
 import './static/css/landing.css';
 
 function App() {
-
-  
-
   return (
     <Router history={history}>
       <Nav />
