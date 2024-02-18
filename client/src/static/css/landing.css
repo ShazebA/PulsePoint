@@ -85,13 +85,17 @@ section {
     max-width: 35%
 }
 
-
 .waves {
     position: absolute;
     bottom: 0;
-    z-index: -1; /* Increase the z-index value to layer it above other elements */
+    z-index: -1; 
     margin: 0;
     height: 100%;
     width: 100%;
 }
 
+@media screen and (max-width: 1305px) {
+  .dna {
+    opacity: 0;
+  }
+}
