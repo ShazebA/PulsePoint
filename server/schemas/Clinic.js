@@ -17,7 +17,8 @@ const User = mongoose.Schema({
         type: String,
         trim: true,
         lowercase: true,
-        required: true
+        required: true,
+        unique: true
     },
     clinicWebsite: {
         type: String,

@@ -5,8 +5,26 @@ const app = express();
 
 app.use(express.json());
 
+app.post('/verifyUser', async (req, res) => {
+    const body = req.body;
+
+    try {
+        await User.findOne({email: body.email}, (err, user) => {
+            // if (!user){
+            //     console.error(err);
+            //     return res.json(err);
+            // }
+
+            res.json(user);
+        });
+    } catch(err) {
+        console.error("ERRORRRRR" + err);
+        res.status(500).json(err);
+    }
+});
+
 //Route for retrieving user data
-app.get('/userData', async (req, res) => {
+app.get('/retrieveUser', async (req, res) => {
     const userId = req.user.userId;
 
     try{
@@ -24,7 +42,7 @@ app.get('/userData', async (req, res) => {
 })
 
 // creating new users
-app.post('/userData', async (req, res) => {
+app.post('/createUser', async (req, res) => {
     const body = req.body;
 
     try {
@@ -46,7 +64,7 @@ app.post('/userData', async (req, res) => {
 })
 
 //Route for retrieving clinic data
-app.get('/clinicData', async(req, res) => {
+app.get('/retrieveClinic', async(req, res) => {
 
     const clinicId = req.body.clinicId;
 
@@ -63,12 +81,11 @@ app.get('/clinicData', async(req, res) => {
         console.log(err);
         res.status(500).json(err);
     }
-
 })
 
 
 // creating new clinics
-app.post('/clinicData', async(req, res) => {
+app.post('/createClinic', async(req, res) => {
     const body = req.body;
     try {
         const clinic = new Clinic({

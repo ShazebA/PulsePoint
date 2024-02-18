@@ -8,6 +8,7 @@ import Nav from './components/Nav';
 import Landing from './pages/Landing';
 import Dashboard from './pages/Dashboard';
 import PrivateRoute from './PrivateRoute';
+import Verify from './pages/Verify';
 
 import './static/css/globals.css';
 import './static/css/navbar.css';
@@ -21,6 +22,7 @@ function App() {
         <Route exact index element={<Landing />}/>
         <Route element={<PrivateRoute />}>
           <Route path="dashboard" element={<Dashboard />}/>
+          <Route path="verify" element={<Verify />}/>
         </Route>
       </Routes>
     </Router>

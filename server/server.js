@@ -4,13 +4,13 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
 
-const userClincRouter = require("./routes/userClinicData.js");
+const userClinicRouter = require("./routes/userClinicData.js");
 
 const app = express();
 app.use(cors());
 app.use(express.static(path.join(__dirname, '..', 'client','build')));
 app.use(express.json());
-app.use("/", userClincRouter);
+app.use("/", userClinicRouter);
 
 let port = process.env.PORT || 3001;
 
