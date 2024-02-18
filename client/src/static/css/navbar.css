@@ -1,11 +1,10 @@
 img {
     width: 4rem;
     margin: 0.75rem;
-    /* margin-right: -1.2rem; */
+    margin-right: -0.25rem;
 }
 
 .dropdown {
-    padding-left: 0.75rem;
     transition: 0.15s ease-out;
 }
 
@@ -22,6 +21,7 @@ nav {
 }
 
 nav h1 {
+    color: #1e1e1e;
     font-size: 1.25rem;
     margin-right: 1.5rem;
 }
