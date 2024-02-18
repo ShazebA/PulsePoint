@@ -23,7 +23,10 @@ section {
 }
 
 .hero-message {
-    z-index: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    z-index: 999;
     padding-top: 20vh;
     padding-left: 5rem;
 }
@@ -54,7 +57,8 @@ section {
     line-height: normal;
 }
 
-.hero-message button {
+.hero-message a {
+    text-decoration: none;
     transition: 0.1s ease;
     cursor: pointer;
     margin-top: 2rem;
@@ -66,7 +70,7 @@ section {
     background: #0C0C4C;
 }
 
-.hero-message button:hover {
+.hero-message a:hover {
     background: #7D18AE;
 }
 
