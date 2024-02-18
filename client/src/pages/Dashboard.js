@@ -17,11 +17,13 @@ const Dashboard = () => {
             if (!response.ok){
               throw new Error("Failed to fetch user");
             }
-            return response.user;
-          }).then(userExists => {
-            if (userExists){
-              console.log("User Info: " + userExists);
-              setUser(userExists);
+            // console.log(response.body);
+            return response.json();
+          }).then(data => {
+
+            // console.log("User Info: " + JSON.stringify(data));
+            if (data){
+              setUser(data);
             }
           })
         } catch(err) {

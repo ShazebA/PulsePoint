@@ -18,9 +18,9 @@ const Verify = () => {
                     throw new Error("Failed to fetch user");
                 }
 
-                return res.user
-            }).then(userExists => {
-                if (userExists){
+                return res.json()
+            }).then(data => {
+                if (data){
                     console.log("HEEERRREEEE");
                     return <Navigate to="/dashboard"/>;
                 }

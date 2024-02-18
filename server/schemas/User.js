@@ -28,7 +28,7 @@ const userSchema = mongoose.Schema({
         type: Boolean,
         default: false
     },
-    healthcardHASH: {
+    healthCardHASH: {
         type: String,
         required: false,
         default: "000000000000"

@@ -7,6 +7,7 @@ app.use(express.json());
 
 app.get('/verifyUser', async (req, res) => {
     const params = req.query;
+    console.log("From /verifyUser: " + params);
     try {
         User.findOne({email: params.email}).then(result => {
             res.json(result);
@@ -17,7 +18,7 @@ app.get('/verifyUser', async (req, res) => {
             }
         });
     } catch(err) {
-        console.error("From /verifyUser: " + err);
+        console.error("ERROR From /verifyUser: " + err);
         res.status(500).json(err);
     }
 });
@@ -43,7 +44,7 @@ app.get('/retrieveUser', async (req, res) => {
 // creating new users
 app.post('/createUser', async (req, res) => {
     const body = req.body;
-    console.log(body);
+    console.log("From /createUser: " + body);
     try {
         const user = new User({
             firstName: body.firstName,
