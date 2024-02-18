@@ -11,6 +11,8 @@ import PrivateRoute from './PrivateRoute';
 
 import './static/css/globals.css';
 import './static/css/navbar.css';
+import './static/css/landing.css';
+
 
 function App() {
 
