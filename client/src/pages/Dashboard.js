@@ -5,7 +5,7 @@ import ClinicDashboard from "./ClinicDashboard";
 
 const Dashboard = () => {
     const { user, isAuthenticated, loginWithRedirect} = useAuth0();
-    const [getUser, setUser] = useState(null);
+    const [getUser, setUser] = useState({});
   
     useEffect(() => {
       const handleSetup = () => {
@@ -21,7 +21,8 @@ const Dashboard = () => {
             return response.json();
           }).then(data => {
 
-            // console.log("User Info: " + JSON.stringify(data));
+            console.log("User Info: " + data);
+            // setUser(data);
             if (data){
               setUser(data);
             }
@@ -37,7 +38,7 @@ const Dashboard = () => {
 
   return (
     <>
-    {isAuthenticated ? (getUser && getUser.isClinic ? <ClinicDashboard user={getUser} /> : <PatientDashboard user={getUser} />) : <Navigate to={loginWithRedirect()} />}
+    {isAuthenticated ? (getUser && getUser.isClinic ? <ClinicDashboard user={getUser} /> : <PatientDashboard user={getUser} /> ) : <Navigate to={loginWithRedirect()} />}
     </>
   );
 };

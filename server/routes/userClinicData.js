@@ -7,7 +7,7 @@ app.use(express.json());
 
 app.get('/verifyUser', async (req, res) => {
     const params = req.query;
-    console.log("From /verifyUser: " + params);
+    console.log("From /verifyUser");
     try {
         User.findOne({email: params.email}).then(result => {
             res.json(result);

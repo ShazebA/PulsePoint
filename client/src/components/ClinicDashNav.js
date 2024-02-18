@@ -3,7 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import logo from '../images/logo.png';
 import {Link} from 'react-router-dom';
 
-const Nav = () => {
+const ClinicDashNav = ({ user }) => {
     const { isAuthenticated, loginWithRedirect, logout} = useAuth0();
     return (
         <nav>
@@ -28,4 +28,4 @@ const Nav = () => {
     );
 }
 
-export default Nav;
+export default ClinicDashNav;
