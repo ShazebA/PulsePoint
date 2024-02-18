@@ -5,6 +5,7 @@
 
 h2 {
     margin: 0 1.25rem;
+    margin-bottom: 0.5rem;
     font-size: 0.75rem;
     color: #6a6a6a;
 }
@@ -18,6 +19,18 @@ h1 {
 
 p {
     margin: 0 1.25rem;
+}
+
+.titles {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.icon {
+    margin: 0;
+    margin-left: 1.25rem;
+    margin-right: -1.25rem;
 }
 
 .date-range-card {
@@ -42,6 +55,10 @@ p {
 }
 
 .health-info-card h2,.ai-assistant-card h2, .send-to-clinic-card h2 {
+    margin-top: 1rem;
+}
+
+.health-info-data {
     margin-top: 1rem;
 }
 
