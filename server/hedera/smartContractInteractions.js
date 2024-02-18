@@ -9,10 +9,13 @@ const {
   require("dotenv").config();
   
   // Setup your client
+  const operatorId = AccountId.fromString("0.0.3121387");
+  const operatorKey = PrivateKey.fromStringECDSA("0x9c42eb4e3e3f33741a9767405763fb331a4574eb0258436b28432a1a0919c0f1");
   const client = Client.forTestnet();
-  client.setOperator(AccountId.fromString(process.env.HEDERA_ACCOUNT_ID), PrivateKey.fromString(process.env.HEDERA_PRIVATE_KEY));
-  
-  const contractId = "0.0.YOUR_CONTRACT_ID"; // Replace with your contract ID
+  client.setOperator(operatorId, operatorKey);
+
+ 
+  const contractId = "0.0.3562786"; // Replace with your contract ID
   const contractGas = 100000; // Adjust based on your contract's needs
   
   // Function to upload a document hash to the smart contract
