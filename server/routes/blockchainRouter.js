@@ -12,6 +12,7 @@ const { createReadStream, createWriteStream } = require('fs');
 
 const client = new Web3Storage({ token: process.env.WEB3_STORAGE_API });
 
+const router = express.Router();
 
 function encryptStream(inputPath, outputPath, callback) {
   const cipher = crypto.createCipher(algorithm, password);
@@ -29,13 +30,12 @@ function encryptStream(inputPath, outputPath, callback) {
 const algorithm = 'aes-256-ctr';
 const password = 'your-encryption-password'; // Use a strong password or key derivation
 
-const app = express();
 const upload = multer({ dest: 'uploads/' });
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+router.use(express.json());
+router.use(express.urlencoded({ extended: true }));
 
-app.post('/api/uploadDocument', upload.single('document'), async (req, res) => {
+router.post('/api/uploadDocument', upload.single('document'), async (req, res) => {
   if (!req.file) {
       return res.status(400).send('No file uploaded.');
   }
@@ -52,6 +52,17 @@ app.post('/api/uploadDocument', upload.single('document'), async (req, res) => {
           fs.unlink(encryptedPath, (err) => {
               if (err) console.error('Failed to remove encrypted file:', err);
           });
+
+          uploadDocumentToSmartContract(cid)
+            .then((txHash) => {
+              // Transaction hash can be used as a reference or for confirmation
+              console.log('Document hash uploaded to smart contract:', txHash);
+              res.json({ success: true, cid, txHash });
+            })
+            .catch((error) => {
+              console.error('Error uploading document hash to smart contract:', error);
+              res.status(500).send('Failed to upload document hash to smart contract.');
+            });
           res.json({ success: true, cid });
       } catch (error) {
           console.error('Error uploading encrypted document to Web3.Storage:', error);
@@ -68,7 +79,7 @@ const encrypt = (text) => {
     return iv.toString('hex') + ':' + encrypted.toString('hex');
 };
 
-app.post('/api/uploadData', async (req, res) => {
+router.post('/api/uploadData', async (req, res) => {
   const numericalData = req.body; // Directly receive data as text
   const encryptedData = encrypt(numericalData);
   
@@ -84,9 +95,23 @@ app.post('/api/uploadData', async (req, res) => {
       // Clean up: remove the temporary file
       fs.unlinkSync(tempFilePath);
 
+      uploadDataToSmartContract(cid)
+        .then((txHash) => {
+          // Transaction hash can be used as a reference or for confirmation
+          console.log('Data hash uploaded to smart contract:', txHash);
+          res.json({ success: true, message: 'Numerical data encrypted, uploaded, and hash uploaded to smart contract successfully.', cid, txHash });
+        })
+        .catch((error) => {
+          console.error('Error uploading data hash to smart contract:', error);
+          res.status(500).json({ success: false, message: 'Failed to upload data hash to smart contract.' });
+        });
+
       res.json({ success: true, message: 'Numerical data encrypted and uploaded successfully.', cid });
   } catch (error) {
       console.error('Failed to upload numerical data:', error);
       res.status(500).json({ success: false, message: 'Failed to upload numerical data.' });
   }
 });
+
+
+module.exports = router;
