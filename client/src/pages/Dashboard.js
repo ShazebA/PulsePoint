@@ -2,6 +2,7 @@ import {React, Navigate, useState, useEffect} from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import PatientDashboard from "./PatientDashboard";
 import ClinicDashboard from "./ClinicDashboard";
+import Nav from "../components/Nav";
 
 const Dashboard = () => {
     const { user, isAuthenticated, loginWithRedirect} = useAuth0();
@@ -38,6 +39,7 @@ const Dashboard = () => {
 
   return (
     <>
+    <Nav />
     {isAuthenticated ? (getUser && getUser.isClinic ? <ClinicDashboard user={getUser} /> : <PatientDashboard user={getUser} /> ) : <Navigate to={loginWithRedirect()} />}
     </>
   );
