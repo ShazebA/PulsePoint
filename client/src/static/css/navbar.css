@@ -58,6 +58,7 @@ nav div {
 }
 
 nav div .dark {
+    cursor: pointer;
     padding-right: 1rem;
     padding-left: .5rem;
 }
