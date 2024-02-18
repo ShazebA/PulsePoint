@@ -21,10 +21,29 @@ const PatientDashboard = ({ user }) => {
       });
   }, []); 
 
+  const [healthCard, setHealthCard] = useState('');
 
-
-
-
+const submitHealthCard = () => {
+  // Call the backend endpoint to hash and save the health card data
+  fetch('http://localhost:3002/updateHealthCard', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ healthCard }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      alert('Health card updated successfully!');
+    } else {
+      alert('Failed to update health card.');
+    }
+  })
+  .catch(error => {
+    console.error('Error updating health card:', error);
+  });
+};
 
 
   return (
@@ -72,6 +91,16 @@ const PatientDashboard = ({ user }) => {
           placeholder="Ask a question..."
         />
         <button onClick={""}>Submit</button>
+      </div>
+
+      <div className="health-card-input">
+        <input
+          type="text"
+          value={healthCard}
+          onChange={(e) => setHealthCard(e.target.value)}
+          placeholder="Enter your health card number"
+        />
+        <button onClick={submitHealthCard}>Submit</button>
       </div>
 
       {assistantResponse && (

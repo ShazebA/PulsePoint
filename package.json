@@ -20,6 +20,7 @@
     "@hashgraph/sdk": "^2.41.0",
     "@web3-storage/w3up-client": "^12.4.1",
     "axios": "^1.6.7",
+    "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.4",
     "express": "^4.18.2",
