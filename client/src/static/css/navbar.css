@@ -1,11 +1,13 @@
 img {
-    width: 4.5rem;
+    width: 4rem;
     margin: 0.75rem;
-    margin-right: -1rem;
+    margin-right: -1.2rem;
 }
 
 .dropdown {
     padding-left: 0.75rem;
+    transition: 0.15s ease-out;
+
 }
 
 nav {
@@ -14,14 +16,14 @@ nav {
     flex-flow: row wrap;
     justify-content: flex-start;
     align-items: center;
-    padding: 0 3rem;
+    padding: 0 4.5rem;
     gap: 2rem;
     box-shadow: 0px 2.5px 4px 0px rgba(0, 0, 0, 0.05);
 }
 
 nav h1 {
-    font-size: 1.5rem;
-    margin-right: 1rem;
+    font-size: 1.25rem;
+    margin-right: 1.5rem;
 }
 
 nav ul {
@@ -34,22 +36,47 @@ nav ul {
     padding: 0;
 }
 
+nav ul li {
+    cursor: pointer;
+    font-size: 14px;
+}
+
+nav ul li:hover .dropdown {
+    transform: scaleY(-1);
+}
+/* 
+nav ul li:hover .dropdown {
+    transform: translateX(10px) translateY(-2px) rotate(-180deg);
+} */
+
 nav div {
     position: absolute;
-    right: 3rem;
+    right: 4.5rem;
     display: flex;
     align-items: center;
     gap: 1rem;
 }
 
+nav div .dark {
+    padding-right: 1rem;
+    padding-left: .5rem;
+}
+
 .signinButton {
+    cursor: pointer;
     border: none;
     border-radius: 15px;
     padding: 0.8rem 1.3rem;
     background: linear-gradient(180deg, #E9F0FD 0%, #F3EBF6 99.5%);
     font-family: 'Raleway', sans-serif;
-    font-size: 18px;
+    font-size: 15px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+    transition: all 4.3s ease;
 }
+
+.signinButton:hover {
+    background: linear-gradient(180deg, #F3EBF6 0%, #E9F0FD 79.5%);
+}
+
