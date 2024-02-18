@@ -2,9 +2,34 @@ const express = require('express');
 const User = require('../schemas/User');
 const Clinic = require('../schemas/Clinic');
 const router = express.Router();
+const bcrypt = require('bcrypt');
+
 
 router.use(express.json());
+router.post('/updateHealthCard', async (req, res) => {
+    const { healthCard } = req.body;
+    const userEmail = "aleksbrsc@gmail.com"; // Assuming you have user session management
+  
+    if (!healthCard) {
+      return res.status(400).json({ success: false, message: 'Health card number is required.' });
+    }
+  
+    try {
+      // Hash the health card number
+      const saltRounds = 10;
+      const healthCardHASH = await bcrypt.hash(healthCard, saltRounds);
+  
+      // Update the user's health card hash in the database
+      await User.updateOne({ userEmail: userEmail }, { $set: { healthCardHASH } });
+  
+      res.json({ success: true, message: 'Health card updated successfully.' });
+    } catch (error) {
+      console.error('Error updating health card:', error);
+      res.status(500).json({ success: false, message: 'Failed to update health card.' });
+    }
+  });
 
+  
 router.get('/verifyUser', async (req, res) => {
     const params = req.query;
     console.log("From /verifyUser");
@@ -41,7 +66,7 @@ router.get('/retrieveUser', async (req, res) => {
     }
 })
 
-app.post('/updateUser', async (req, res) => {
+router.post('/updateUser', async (req, res) => {
     const body = req.body;
 
     User.findOneAndUpdate({_id: body._id}, body, {new: true}).then(updated => {

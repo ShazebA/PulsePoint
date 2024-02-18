@@ -1,0 +1,76 @@
+
+
+section {
+    position: relative;
+    display: grid;
+    gap: 1rem;
+    padding: 2rem;
+
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+}
+.card {
+    display:flex;
+    padding: 1rem;
+    border-radius: 10px;
+    background: #F5F3FF;
+    position: relative;
+    
+}
+
+.card-title {
+    color: #6A6A6A;
+    font-family: Raleway;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    position: absolute;
+    top: 10px;
+    left: 15px;
+}
+
+.card-heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+.card-heading h3 {
+color: #444;
+
+font-family: Raleway;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+
+p {
+    margin: 0;
+}
+
+.import {
+    grid-column: 1 / span 3;
+    grid-row: 1 / 2;
+}
+
+.date-range {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.upload {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.health-info {
+    grid-column: 1 / 9;
+    grid-row: 3 / span 3;
+}
+
+.assistant {
+    grid-column: 1/ span 2;
+    grid-row: 6;
+}

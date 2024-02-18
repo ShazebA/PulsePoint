@@ -27,6 +27,8 @@ const Dashboard = () => {
               setUser(data);
             }
             console.log("User Info: " + JSON.stringify(getUser));
+          }).catch(err => {
+            console.log(err);
           })
         } catch(err) {
           console.log(err);
