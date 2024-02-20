@@ -2,7 +2,6 @@
     margin: 1.5rem 5rem;
 }
 
-
 .container h2 {
     margin: 0 1.25rem;
     margin-bottom: 0.5rem;
@@ -82,6 +81,10 @@
 }
 
 .health-info-data {
+    display: grid;
+    width: 80vw;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
     margin-top: 1rem;
 }
 
@@ -187,6 +190,8 @@ input::placeholder {
 }
 
 .dropbox {
+    transition: 0.1s ease;
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -198,3 +203,6 @@ input::placeholder {
     height: 70%;
 }
 
+.dropbox:hover {
+    opacity: 75%;
+}

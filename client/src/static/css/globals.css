@@ -5,3 +5,37 @@ body {
     background-color: #FBFBFB;
     margin: 0;
 }
+
+.route-spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.route-spinner {
+    width: 3vw;
+    height: 3vw;
+    border-top-color: #4f4fdb8b;
+    border-left-color: #4f4fdb8b;
+
+    animation: route-spinner 400ms linear infinite;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+@keyframes route-spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

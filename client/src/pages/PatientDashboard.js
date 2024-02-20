@@ -137,7 +137,7 @@ const PatientDashboard = ({ user }) => {
 
         <div class="send-to-clinic-card">
           <h2>Send to Clinic</h2>
-          <h1>Send EMR to Clinic</h1>
+          <h1>Select EMR Recipient</h1>
           <select>
           {Object.entries(clinics).map(([clinicKey, clinicDetails]) => (
             <option key={clinicKey} value={clinicDetails}>
@@ -168,9 +168,9 @@ const PatientDashboard = ({ user }) => {
         {/* <h1>Hello, {user.firstName}!</h1>
         <h2>Patient</h2>
         <p>{user.email}</p> */}
-      </div>
+  </div>
 
-    </div>
+</div>
   );
 };
 

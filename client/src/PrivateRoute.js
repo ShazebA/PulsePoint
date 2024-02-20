@@ -7,7 +7,7 @@ const PrivateRoute = () => {
     // console.log(isAuthenticated);
 
     if (isLoading){
-        return <h1>Loading Authentication</h1>
+        return <div class="route-spinner-container"><span class="route-spinner"></span></div>;
     }
 
     if (error){
@@ -22,7 +22,7 @@ const PrivateRoute = () => {
 
 
     if (isAuthenticated) {
-        return <Outlet />;
+        return <Outlet/>;
     } else {
         console.log("Is Authenticated: " + isAuthenticated);
         return <Navigate to={loginWithRedirect()} />;

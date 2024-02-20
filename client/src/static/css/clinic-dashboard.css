@@ -1,18 +1,17 @@
-
-
-section {
+section .container {
     position: relative;
     display: grid;
     gap: 1rem;
     padding: 2rem;
-
     grid-template-columns: 1.5fr 1.5fr  repeat(4, 1fr);
     grid-template-rows: repeat(9, 1fr);
 }
+
 .card {
     display:flex;
     padding: 1rem;
     border-radius: 10px;
+    margin: 1.5rem;
     background: #F5F3FF;
     position: relative;
 }
