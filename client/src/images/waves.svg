@@ -1,7 +1,1 @@
-<svg class="waves" width="1313" height="644" viewBox="0 0 1313 644" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M1312 600C933.698 618.879 141.259 589.565 6 632" stroke="white" opacity="0.5"/>
-    <path d="M6 90.5C962 144 1297 204 1297 0.5" stroke="white" opacity="0.5"/>
-    <path d="M6 247.43C973.857 267.848 1312 271.665 1312 194" stroke="white" opacity="0.5"/>
-    <path d="M6 462C976.836 473.913 1311.5 472.64 1311.5 500" stroke="white" opacity="0.5"/>
-    <path d="M6 360C977.58 361.009 1312 361 1312 361" stroke="white" opacity="0.5"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1313" height="644" fill="none" class="waves" viewBox="0 0 1313 644"><path stroke="#fff" d="M1312 600C933.698 618.879 141.259 589.565 6 632" opacity=".5"/><path stroke="#fff" d="M6 90.5C962 144 1297 204 1297 0.5" opacity=".5"/><path stroke="#fff" d="M6 247.43C973.857 267.848 1312 271.665 1312 194" opacity=".5"/><path stroke="#fff" d="M6 462C976.836 473.913 1311.5 472.64 1311.5 500" opacity=".5"/><path stroke="#fff" d="M6 360C977.58 361.009 1312 361 1312 361" opacity=".5"/></svg>
